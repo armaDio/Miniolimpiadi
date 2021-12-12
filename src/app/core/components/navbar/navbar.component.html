@@ -1,0 +1,35 @@
+<nav>
+
+</nav>
+
+<mat-toolbar>
+    <button mat-icon-button type='button' class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button mat-button routerLink='admin-page'>Admin</button>
+    <button mat-button routerLink='login-page'>Login</button>
+    <button mat-button routerLink='hero-page'>Heroes</button>
+  </mat-toolbar>
+
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <button  mat-button>Anagrafica</button>
+      <!-- Anagrafica, Cambio squadra in dettagli persona-->
+      <mat-divider></mat-divider>
+      <button  mat-button>Squadre</button>
+      <!-- Formazione, pettorali-->
+      <mat-divider></mat-divider>
+      <button  mat-button>Risultati gare</button>
+      <!-- Inserimento risultati per ogni gara + staffetta -->
+      <mat-divider></mat-divider>
+      <button  mat-button >Generazione Report</button>
+      <!-- Elenco per cognome,nome + Elenco per singola squadra + Elenco per ogni categoria,spec,sesso  -->
+      <mat-divider></mat-divider>
+      <button  mat-button>Risultati finali</button>
+      <!-- Punteggio squadra + Atleti con più punteggio per ogni categoria e sesso e squadra+  -->
+    </mat-drawer>
+  </mat-drawer-container>
+
+  
