@@ -1,0 +1,10 @@
+<input [(ngModel)]="atleta.name">
+<input [(ngModel)]="atleta.surname">
+<input type="date" [(ngModel)]="atleta.nascita">
+<input [(ngModel)]="atleta.sex">
+<input [(ngModel)]="atleta.team">
+<div class="button-del">
+    <button mat-fab color="primary" (click)="delete()" aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>

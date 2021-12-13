@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  showFiller = false;
+  @Output() public sidenavToggle = new EventEmitter();
+
+  public y:number = (new Date()).getFullYear();
+  public ed = this.y-1996;
 
   constructor() {
     
@@ -16,5 +20,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  public onToggleSidenav() {
+    this.sidenavToggle.emit();
+  }
 
 }

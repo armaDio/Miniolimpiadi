@@ -1,0 +1,11 @@
+<mat-action-list matRipple>
+    <button color="primary" mat-list-item (click)='showDetails(item.id)' *ngFor="let item of atletaStore.atleti" class="atleta-row">
+        {{item.name}} {{ item.surname }}  -  {{item.nascita}}
+    </button>
+</mat-action-list>
+
+<div class="button-add">
+    <button mat-fab color="primary" (click)="addNew()" aria-label="Example icon button with a delete icon">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

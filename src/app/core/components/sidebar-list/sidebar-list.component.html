@@ -1,0 +1,22 @@
+<mat-nav-list>
+    <a mat-list-item routerLink="/atleti" (click)="onSidenavClose()">
+        <mat-icon>tag_faces</mat-icon> <span class="nav-caption">Anagrafica</span>
+<!-- Anagrafica, Cambio squadra in dettagli persona-->
+    </a>
+    <a mat-list-item routerLink="/teams" (click)="onSidenavClose()">
+        <mat-icon>people</mat-icon> <span class="nav-caption">Squadre</span>   
+<!-- Formazione, pettorali-->
+    </a>
+    <a mat-list-item routerLink="/gare" (click)="onSidenavClose()">
+        <mat-icon>poll</mat-icon><span class="nav-caption">Risultati gare</span>
+<!-- Inserimento risultati per ogni gara + staffetta -->
+    </a>
+    <a mat-list-item routerLink="/report" (click)="onSidenavClose()">
+        <mat-icon>print</mat-icon><span class="nav-caption">Generazione Report</span>
+        <!-- Elenco per cognome,nome + Elenco per singola squadra + Elenco per ogni categoria,spec,sesso  -->
+    </a>
+    <a mat-list-item routerLink="/results" (click)="onSidenavClose()">
+        <mat-icon>whatshot</mat-icon><span class="nav-caption">Risultati finali</span>
+        <!-- Punteggio squadra + Atleti con più punteggio per ogni categoria e sesso e squadra+  -->
+    </a>
+</mat-nav-list>

@@ -1,5 +1,15 @@
 {
-    "atleta":{
-        
+  "atleti": [
+    {
+      "name": "Test",
+      "id": 3
+    },
+    {
+      "name": "Sona",
+      "surname": "Puzzona",
+      "nascita": "0004-05-09",
+      "sex": "Caccia alla biglia, corsa da aspirapolvere, pisolino estremo",
+      "id": 6
     }
+  ]
 }

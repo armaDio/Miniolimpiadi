@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AtletiComponentComponent } from './atleti-component.component';
+import { SidebarListComponent } from './sidebar-list.component';
 
-describe('AtletiComponentComponent', () => {
-  let component: AtletiComponentComponent;
-  let fixture: ComponentFixture<AtletiComponentComponent>;
+describe('SidebarListComponent', () => {
+  let component: SidebarListComponent;
+  let fixture: ComponentFixture<SidebarListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AtletiComponentComponent ]
+      declarations: [ SidebarListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AtletiComponentComponent);
+    fixture = TestBed.createComponent(SidebarListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

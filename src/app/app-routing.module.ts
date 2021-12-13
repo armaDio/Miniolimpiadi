@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AtletiComponent } from './features/atleti-component/atleti.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'atleti', component: AtletiComponent }
+  {
+    path:'atleti',
+    loadChildren: () => import('./features/atleti/atleti.module').then(res => res.AtletiModule)
+  },{
+    path:'',
+    loadChildren: () => import('./features/atleti/atleti.module').then(res => res.AtletiModule)
+  },
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{preloadingStrategy:PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
