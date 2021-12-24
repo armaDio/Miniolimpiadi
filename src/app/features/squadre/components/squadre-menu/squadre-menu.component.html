@@ -1,0 +1,11 @@
+<div>
+    <button mat-raised-button [disabled]="generated" (click)="generateTeams()" >
+        Genera Squadre
+    </button>
+</div>
+<br>
+<div>
+    <button mat-raised-button [disabled]="!generated" (click)="generateTeams()" >
+        Rimuovi Squadre
+    </button>
+</div>

@@ -7,6 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarListComponent } from './core/components/sidebar-list/sidebar-list.component';
 import { materialModule } from './shared/material.module';
 import { CoreModule } from './core/core.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+
 
 
 @NgModule({
@@ -18,11 +22,15 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    materialModule
+    materialModule,
+    MomentDateModule
     
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

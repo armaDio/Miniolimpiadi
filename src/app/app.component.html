@@ -1,9 +1,9 @@
-<mat-sidenav-container class="white-container">
+<mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation">
         <app-sidebar-list (sidenavClose)="sidenav.close()"></app-sidebar-list>
     </mat-sidenav>
     <mat-sidenav-content>
-    <app-navbar (sidenavToggle)="sidenav.toggle()"></app-navbar>>
+    <app-navbar (sidenavToggle)="sidenav.toggle()"></app-navbar>
     <main>
         <router-outlet></router-outlet>
     </main>

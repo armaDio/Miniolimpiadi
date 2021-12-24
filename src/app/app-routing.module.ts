@@ -8,6 +8,9 @@ const routes: Routes = [
   },{
     path:'',
     loadChildren: () => import('./features/atleti/atleti.module').then(res => res.AtletiModule)
+  },{
+    path:'squadre',
+    loadChildren: () => import('./features/squadre/squadre.module').then(res => res.SquadreModule)
   },
 
 ];

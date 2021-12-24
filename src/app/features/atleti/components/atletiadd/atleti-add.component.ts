@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AtletaDto } from '../../models/atleta-dto.model';
-import { AtletiService } from '../../services/atleti.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AtletaDto } from '../../../../shared/models/atleta-dto.model';
+import { AtletiService } from '../../../../shared/services/atleti.service';
 
 @Component({
   selector: 'app-atletiadd',
@@ -10,7 +10,7 @@ import { AtletiService } from '../../services/atleti.service';
 })
 export class AtletiAddComponent implements OnInit {
 
-  constructor(public atletiService:AtletiService,public router:ActivatedRoute) { }
+  constructor(public atletiService:AtletiService,public router:Router) { }
 
   public atleta=new AtletaDto({});
   ngOnInit(): void {
@@ -21,5 +21,10 @@ export class AtletiAddComponent implements OnInit {
       this.atletiService.add(this.atleta);
     else
       alert("Mancano alcuni parametri");
+  }
+
+  public close(){
+    this.router.navigate(["atleti"])
+
   }
 }

@@ -4,6 +4,9 @@ import { AtletaDto } from "../models/atleta-dto.model";
 @Injectable()
 export class AtletaStore{
     get(id: number): AtletaDto {
+      
+      
+      console.log(this.atleti);
       let at = this.atleti.find(function(node) {
         return node.id==id;
       });
@@ -12,6 +15,7 @@ export class AtletaStore{
       }
       return at;
     }
+
     public atleti:AtletaDto[] = [];
 
     public delete(id:number){
@@ -26,6 +30,7 @@ export class AtletaStore{
     public add(item:AtletaDto){
       this.atleti.push(item);
     }
+
 
     
 }
