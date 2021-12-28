@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -20,11 +21,12 @@ import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-ad
   imports: [
     BrowserModule,
     CoreModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     materialModule,
     MomentDateModule
-    
+
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

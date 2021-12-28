@@ -1,10 +1,34 @@
-<input [(ngModel)]="atleta.name">
-<input [(ngModel)]="atleta.surname">
-<input type="date" [(ngModel)]="atleta.nascita">
-<input [(ngModel)]="atleta.sex">
-
-<div class="button-add">
-    <button mat-fab color="primary" (click)="add();close()" aria-label="Example icon button with a delete icon">
+<form [formGroup]="atletaForm" style="width: 50%;">
+  <mat-form-field style="width: 100%;align-self: center;" appearance="outline">
+    <mat-label >Nome</mat-label>
+    <input matInput placeholder="Nome" formControlName="name">
+  </mat-form-field><br>
+  <mat-form-field style="width: 100%;align-self: center;" appearance="outline">
+      <mat-label >Cognome</mat-label>
+      <input matInput placeholder="Cognome" formControlName="surname" >
+  </mat-form-field><br>
+  <mat-form-field style="width: 100%;align-self: center;"appearance="outline">
+      <mat-label >Data di nascita</mat-label>
+      <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="nascita">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field><br>
+  <mat-form-field style="width: 100%;align-self: center;" appearance="outline">
+      <mat-label>Sesso</mat-label>
+      <mat-select formControlName="sex">
+        <mat-option value="M">
+          M
+        </mat-option>
+        <mat-option value="F">
+          F
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <div class="button-add">
+      <button mat-fab color="primary" (click)="add()" aria-label="Example icon button with a delete icon">
         <mat-icon>check</mat-icon>
-    </button>
-</div>
+      </button>
+    </div>
+</form>
+
+

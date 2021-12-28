@@ -1,6 +1,7 @@
 export class AtletaDto{
 
     public id: number;
+    public pettorale: number = -1;
     public name:string;
     public surname: string;
     public nascita: Date;
@@ -14,6 +15,7 @@ export class AtletaDto{
         this.nascita = obj?.nascita;
         this.sex = obj?.sex;
         this.team = obj?.team;
+        this.pettorale = obj?.pettorale;
     }
 
     

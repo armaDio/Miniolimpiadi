@@ -75,6 +75,7 @@ export class SquadreMenuComponent implements OnInit {
   public removeTeams(){
     this.atleti.forEach(e => {
       e.team = "";
+      e.pettorale = 0;
     })
     this.saveData();
     this.generated = false;
@@ -116,6 +117,7 @@ export class SquadreMenuComponent implements OnInit {
     this.assignCatSex(category.juniores,"F");
     this.assignCatSex(category.seniores,"F");
 
+    this.updateSquadre();
     //this.saveData();
     this.generated = true;
   }
@@ -132,30 +134,27 @@ export class SquadreMenuComponent implements OnInit {
       this.squadre.set(el,t[idx]);
       idx = (idx+1)%t.length;
     });
-    this.updateSquadre();
   }
 
-  assignPettorali(){
-    let r =0, b = 0,g =0, v =0;
-    Array.from(this.squadre.keys())
-  }
+  assegnaPettorali(){
+    let r = 0, b = 50 ,g =100, v =150;
+    this.atletiService.getAtletiSub().subscribe(res=> {
+      let a:AtletaDto[] = Object.values(res);
 
-  private shuffle(array:[]) {
-    let currentIndex = array.length,  randomIndex;
-
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
+      
+      a.forEach( e =>{
+          this.generated = this.generated && (e.team == "Rossi" ||e.team == "Blu" ||e.team == "Gialli" || e.team == "Verdi");
+        }
+      );
+      if(this.generated){
+        a.forEach( e =>{
+          e.pettorale = (e.team == "Rossi" ? ++r : (e.team == "Blu" ? ++b : (e.team == "Gialli" ? ++g : ++v)));
+        }
+      );
+      }
+      this.atleti = a;
+    });
+    this.saveData();
   }
 
   updateSquadre() {
@@ -182,26 +181,5 @@ private getOneCategory(categ: category, arg1: string) {
   return temp;
 }
 
-}
-
-
-function saveOne(a:Map<Observable<Object>,boolean>,i: number){
-  let o = new Map(a);
-  let idx = i;
-  setTimeout(function(){
-    if(idx<o.size){
-      let obj = Array.from(o.keys())[idx];
-      if(!o.get(obj)){
-        o.set(obj, true);
-        console.log("\n\n\n");
-        console.log(idx);
-        console.log(o);
-        obj.subscribe(res =>{idx++; console.error(res)}, error => {
-          console.log(error);
-       });
-      }
-      saveOne(o,idx);
-    }
-  }, 500);
 }
 

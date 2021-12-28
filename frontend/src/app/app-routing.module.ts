@@ -11,6 +11,9 @@ const routes: Routes = [
   },{
     path:'squadre',
     loadChildren: () => import('./features/squadre/squadre.module').then(res => res.SquadreModule)
+  },{
+    path:'gare',
+    loadChildren: () => import('./features/risultati/risultati.module').then(res => res.RisultatiModule)
   },
 
 ];

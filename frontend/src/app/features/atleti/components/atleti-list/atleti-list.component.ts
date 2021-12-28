@@ -15,7 +15,7 @@ import { AtletaDto } from '../../../../shared/models/atleta-dto.model';
 })
 export class AtletiListComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns: string[] = ['name', 'surname', 'sex', 'nascita', 'team'];
+  public displayedColumns: string[] = ['name', 'surname', 'sex', 'nascita', 'team','pettorale',];
   public dataSource!: MatTableDataSource<AtletaDto>;
   public atleti!: AtletaDto[];
 

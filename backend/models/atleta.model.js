@@ -9,6 +9,7 @@ var counter = mongoose.model('counter', CounterSchema);
 
 const atletaSchema = new mongoose.Schema({
     id: Number,
+    pettorale: Number,
     name: String,
     surname: String,
     sex: String,

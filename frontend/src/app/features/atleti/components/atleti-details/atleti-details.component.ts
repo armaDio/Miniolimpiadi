@@ -31,10 +31,11 @@ export class AtletiDetailsComponent implements OnInit, OnDestroy {
     this.atletaForm = this.formBuilder.group(
       {
         name: [{}, Validators.required],
-        team: [{value: "",disabled: true}],
+        team: [{value:"",disabled: true}],
         surname: [{},Validators.required],
         sex: [{},Validators.required],
-        nascita:[{},Validators.required]
+        nascita:[{},Validators.required],
+        pettorale: [{value:"", disabled: true}]
       });
     this.atletaService.getAtleta(this.actRoute.snapshot.params['id']).subscribe(res => {
       this.atleta= res[0];
@@ -43,7 +44,8 @@ export class AtletiDetailsComponent implements OnInit, OnDestroy {
         surname:this.atleta.surname,
         sex:this.atleta.sex,
         nascita:this.atleta.nascita,
-        team:this.atleta.team || "   "
+        team:this.atleta.team || "Non Assegnato",
+        pettorale:this.atleta.pettorale!=0? this.atleta.pettorale : "Non Assegnato"
       })
       });
       this.atletaForm.valueChanges.pipe(debounceTime(2000),distinctUntilChanged(),tap(()=>this.haschanged=true)).subscribe((val: AtletaDto) => {

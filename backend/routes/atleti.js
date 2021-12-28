@@ -5,15 +5,18 @@ const Atleta = require("../models/atleta.model")
 const bodyParser = require('body-parser');
 
 var jsonParser = bodyParser.json();
-router.get("/", async (req, res) => {
-	const atleta = await Atleta.find();
-    res.type('json');
-	res.status(200).json(atleta);
+
+router.get("/", (req, res) => {
+	Atleta.find(function (err, post) {
+        if (err) 
+            res.status(500).send(err);
+        res.type('json');
+	    res.status(200).json(post);
+    });
 })
 
 router.get("/:id", (req, res) => {
-
-    const atleta = Atleta.find({ 'id': req.params.id },
+    Atleta.find({ 'id': req.params.id },
         function (err, post) {
             if (err) 
                 res.status(500).send(err);
@@ -23,7 +26,6 @@ router.get("/:id", (req, res) => {
 })
 
 router.post('/', jsonParser, function(req, res, next) {
-    console.log(req.body);
     Atleta.create(req.body, function (err, post) {
         if (err) 
             return next(err);
