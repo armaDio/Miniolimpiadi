@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { concat, concatAll, concatMap, delay, from, Observable, of, single, Subscription, tap } from 'rxjs';
 import { AtletiService } from 'src/app/shared/services/atleti.service';
 import { AtletaDto } from '../../../../shared/models/atleta-dto.model';
 import { SquadreService } from '../../../../shared/services/squadre.service';
@@ -26,8 +27,11 @@ export class SquadreMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.atletiService.getAtletiSub().subscribe(res=> {
-      this.atleti = res;
-      res.forEach( e =>{
+      let a= Object.values(res);
+
+      this.atleti = a;
+      console.log(a);
+      a.forEach( e =>{
           this.generated = this.generated && (e.team == "Rossi" ||e.team == "Blu" ||e.team == "Gialli" || e.team == "Verdi");
         }
       )
@@ -48,17 +52,17 @@ export class SquadreMenuComponent implements OnInit {
           else
               hash.set(arr[i], 1);
       }
-   
+
       // find the min frequency
       var min_count = n+1, res = -1;
-   
+
       hash.forEach((value, key) => {
           if (min_count >= value) {
               res = key;
               min_count = value;
           }
       });
-   
+
       return res;
   }
 
@@ -66,6 +70,14 @@ export class SquadreMenuComponent implements OnInit {
   public startingTeam():any{
     console.warn(Array.from(this.squadre.values()));console.warn(Array.from(this.squadre.values()).length);
     return this.leastFrequent(Array.from(this.squadre.values()) ,Array.from(this.squadre.values()).length);
+  }
+
+  public removeTeams(){
+    this.atleti.forEach(e => {
+      e.team = "";
+    })
+    this.saveData();
+    this.generated = false;
   }
 
   public generateTeams(){
@@ -92,24 +104,25 @@ export class SquadreMenuComponent implements OnInit {
             break;
       }
     });
-    
+
     this.assignCatSex(category.pulcini,"M");
     this.assignCatSex(category.giovanissimi,"M");
     this.assignCatSex(category.juniores,"M");
     this.assignCatSex(category.seniores,"M");
-    
-    
+
+
     this.assignCatSex(category.pulcini,"F");
     this.assignCatSex(category.giovanissimi,"F");
     this.assignCatSex(category.juniores,"F");
     this.assignCatSex(category.seniores,"F");
 
     //this.saveData();
+    this.generated = true;
   }
+
   saveData() {
     this.atletiService.edit_all(this.atleti);
   }
-
 
   assignCatSex(cat: category, sex: string) {
     let t= ["Rossi","Gialli","Verdi","Blu"];
@@ -129,19 +142,19 @@ export class SquadreMenuComponent implements OnInit {
 
   private shuffle(array:[]) {
     let currentIndex = array.length,  randomIndex;
-  
+
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
-  
+
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
+
       // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
-  
+
     return array;
   }
 
@@ -152,8 +165,7 @@ export class SquadreMenuComponent implements OnInit {
       });
       this.atleti[index]=element[0];
       this.atleti[index].team=element[1];
-      //this.atletiService.edit(this.atleti[index]);
-    });  
+    });
     this.saveData();
   }
 
@@ -164,7 +176,7 @@ private getOneCategory(categ: category, arg1: string) {
     let cat:category = el[1];
     if(atl.sex==arg1 && categ == cat){
       temp.push(atl);
-    } 
+    }
   });
 
   return temp;
@@ -172,4 +184,24 @@ private getOneCategory(categ: category, arg1: string) {
 
 }
 
+
+function saveOne(a:Map<Observable<Object>,boolean>,i: number){
+  let o = new Map(a);
+  let idx = i;
+  setTimeout(function(){
+    if(idx<o.size){
+      let obj = Array.from(o.keys())[idx];
+      if(!o.get(obj)){
+        o.set(obj, true);
+        console.log("\n\n\n");
+        console.log(idx);
+        console.log(o);
+        obj.subscribe(res =>{idx++; console.error(res)}, error => {
+          console.log(error);
+       });
+      }
+      saveOne(o,idx);
+    }
+  }, 500);
+}
 

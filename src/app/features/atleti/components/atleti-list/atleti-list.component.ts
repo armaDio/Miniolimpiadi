@@ -19,14 +19,18 @@ export class AtletiListComponent implements OnInit, AfterViewInit {
   public dataSource!: MatTableDataSource<AtletaDto>;
   public atleti!: AtletaDto[];
 
-  
+
   constructor(private _liveAnnouncer: LiveAnnouncer,public router:Router, public atletaStore: AtletaStore, public atletaService:AtletiService) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource();
-    this.atletaService.getAtletiSub().subscribe(res => { this.dataSource.data=res;this.atletaStore.init(res)});
+
+    this.atletaService.getAtletiSub().subscribe(res => {
+      this.dataSource.data=Object.values(res);
+      console.log(Object.values(res));
+      this.atletaStore.init(Object.values(res))});
   }
-  
+
   public showDetails(id:number){
     this.router.navigate(["atleti", "details", id]);
   }

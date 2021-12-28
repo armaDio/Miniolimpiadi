@@ -26,6 +26,7 @@ export class AtletiDetailsComponent implements OnInit, OnDestroy {
     this.maxDate = new Date(currentYear - 6, 11, 31);
    }
 
+
   ngOnInit(): void {
     this.atletaForm = this.formBuilder.group(
       {
@@ -35,7 +36,8 @@ export class AtletiDetailsComponent implements OnInit, OnDestroy {
         sex: [{},Validators.required],
         nascita:[{},Validators.required]
       });
-    this.atletaService.getAtleta(this.actRoute.snapshot.params['id']).subscribe(res => {this.atleta= res;
+    this.atletaService.getAtleta(this.actRoute.snapshot.params['id']).subscribe(res => {
+      this.atleta= res[0];
       this.atletaForm.setValue({
         name:this.atleta.name,
         surname:this.atleta.surname,
@@ -48,20 +50,18 @@ export class AtletiDetailsComponent implements OnInit, OnDestroy {
         if(this.atletaForm.valid){
           val.id= this.atleta.id;
           this.atleta= val;
-          
+
           this.saveChanges(this.atleta);
         }
       });
     }
-  
+
   saveChanges(item:AtletaDto){
     if(this.haschanged){
-      this.atletaService.deleteSub(item.id).subscribe(res => {
+      this.atletaService.edit(item).subscribe(res => {
         this.atletaStore.delete(item.id);
         this.haschanged=false;
-        this.atletaService.addSub(item).subscribe(
-          res => this.atletaService.getAtleti()
-        );
+        this.atletaStore.add(item);
       })
     }
   }
