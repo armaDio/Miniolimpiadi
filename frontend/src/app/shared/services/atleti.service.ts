@@ -17,7 +17,7 @@ export class AtletiService {
   }
 
   public getAtletiSub(){
-    return this.httpClient.get<AtletaDto>("http://localhost:3000/atleti");
+    return this.httpClient.get<AtletaDto[]>("http://localhost:3000/atleti");
   }
 
   public delete(id:number){

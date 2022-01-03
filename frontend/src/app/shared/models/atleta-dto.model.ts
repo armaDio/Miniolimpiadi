@@ -1,4 +1,11 @@
 import { GareDto } from './gare.model';
+
+export enum category{
+  seniores="SE",
+  juniores="JU",
+  pulcini="PU",
+  giovanissimi="GI"
+}
 export class AtletaDto{
 
     public id: number;
@@ -21,5 +28,29 @@ export class AtletaDto{
         this.gare = new GareDto(obj?.gare);
     }
 
+    public getCategory(){
+
+      switch(new Date().getFullYear()-new Date(this.nascita).getFullYear()){
+        case 5:
+        case 6:
+        case 7:
+          return category.pulcini;
+          break;
+        case 8:
+        case 9:
+          return category.giovanissimi;
+          break;
+        case 11:
+        case 12:
+          return category.juniores;
+          break;
+        case 13:
+        case 14:
+        case 15:
+        default:
+            return category.seniores;
+            break;
+      }
+    }
 
 }

@@ -11,6 +11,7 @@ import { RisultatiVelocitaComponent } from './pages/risultati-velocita/risultati
 import { RisultatiPesoComponent } from './pages/risultati-peso/risultati-peso.component';
 import { RisultatiVortexComponent } from './pages/risultati-vortex/risultati-vortex.component';
 import { RisultatiMezzofondoComponent } from './pages/risultati-mezzofondo/risultati-mezzofondo.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -26,6 +27,7 @@ import { RisultatiMezzofondoComponent } from './pages/risultati-mezzofondo/risul
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RisultatiRouter,
     RouterModule,
     materialModule,

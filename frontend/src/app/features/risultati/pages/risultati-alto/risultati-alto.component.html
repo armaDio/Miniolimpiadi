@@ -1,1 +1,22 @@
-<p>risultati-alto works!</p>
+<form >[formGroup]="formGroup"</form>
+Sesso:
+<select>
+  <option value="M">M</option>
+  <option value="F">F</option>
+</select>
+Categoria
+<select>
+  <option value="PU">Pulcini</option>
+  <option value="GI">Giovanissimi</option>
+  <option value="JU">Juniores</option>
+  <option value="SE">Seniores</option>
+</select>
+<button (click)="filtraAtleti()">
+  Vai
+</button>
+
+<div [hidden]="atletaFiltered.length === 0">
+  <p>
+    TEST
+  </p>
+</div>
