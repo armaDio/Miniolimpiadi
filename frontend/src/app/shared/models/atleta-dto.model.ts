@@ -1,3 +1,4 @@
+import { GareDto } from './gare.model';
 export class AtletaDto{
 
     public id: number;
@@ -7,7 +8,8 @@ export class AtletaDto{
     public nascita: Date;
     public sex: string;
     public team: string;
-    
+    public gare: GareDto;
+
     constructor(obj?:any){
         this.id = obj?.id;
         this.name = obj?.name;
@@ -16,7 +18,8 @@ export class AtletaDto{
         this.sex = obj?.sex;
         this.team = obj?.team;
         this.pettorale = obj?.pettorale;
+        this.gare = new GareDto(obj?.gare);
     }
 
-    
+
 }
