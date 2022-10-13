@@ -1,6 +1,6 @@
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 import { debounceTime, delay, distinctUntilChanged, Observable, Subscription, tap } from 'rxjs';
 import { AtletaDto } from 'src/app/shared/models/atleta-dto.model';
@@ -14,13 +14,13 @@ import { AtletiService } from '../../../../shared/services/atleti.service';
 })
 export class AtletiDetailsComponent implements OnInit, OnDestroy {
 
-  public atletaForm!: FormGroup;
+  public atletaForm!: UntypedFormGroup;
   public atleta:AtletaDto = new AtletaDto();
   public minDate: Date;
   public maxDate: Date;
   public haschanged:boolean= false;
 
-  constructor(private formBuilder: FormBuilder, public atletaStore:AtletaStore,public route:Router, public actRoute:ActivatedRoute,public atletaService:AtletiService) {
+  constructor(private formBuilder: UntypedFormBuilder, public atletaStore:AtletaStore,public route:Router, public actRoute:ActivatedRoute,public atletaService:AtletiService) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 14, 0, 1);
     this.maxDate = new Date(currentYear - 6, 11, 31);
