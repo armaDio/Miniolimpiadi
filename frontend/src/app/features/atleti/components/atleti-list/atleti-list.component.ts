@@ -28,7 +28,7 @@ export class AtletiListComponent implements OnInit, AfterViewInit {
     this.atletaService.getAtletiSub().subscribe(res => {
       this.dataSource.data=Object.values(res);
       console.log(Object.values(res));
-      this.atletaStore.init(Object.values(res))});
+      this.atletaStore.init((res))});
   }
 
   public showDetails(id:number){

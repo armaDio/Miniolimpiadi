@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { concat, concatAll, concatMap, delay, from, Observable, of, single, Subscription, tap } from 'rxjs';
 import { AtletiService } from 'src/app/shared/services/atleti.service';
-import { AtletaDto } from '../../../../shared/models/atleta-dto.model';
+import { AtletaDto, category } from '../../../../shared/models/atleta-dto.model';
 import { SquadreService } from '../../../../shared/services/squadre.service';
 
-export enum category{
-  seniores="SE",
-  juniores="JU",
-  pulcini="PU",
-  giovanissimi="GI"
-}
+
 @Component({
   selector: 'app-squadre-menu',
   templateUrl: './squadre-menu.component.html',
@@ -141,7 +136,7 @@ export class SquadreMenuComponent implements OnInit {
     this.atletiService.getAtletiSub().subscribe(res=> {
       let a:AtletaDto[] = Object.values(res);
 
-      
+
       a.forEach( e =>{
           this.generated = this.generated && (e.team == "Rossi" ||e.team == "Blu" ||e.team == "Gialli" || e.team == "Verdi");
         }
@@ -153,8 +148,8 @@ export class SquadreMenuComponent implements OnInit {
       );
       }
       this.atleti = a;
+      this.saveData();
     });
-    this.saveData();
   }
 
   updateSquadre() {
